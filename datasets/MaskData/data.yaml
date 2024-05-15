@@ -1,0 +1,11 @@
+train: E:\MyCVProgram\FacemaskDetection\datasets\MaskData\train  # train images (relative to 'path') 128 images
+val: E:\MyCVProgram\FacemaskDetection\datasets\MaskData\val  # val images (relative to 'path') 128 images
+test:  # val images (optional)
+
+# number of classes
+nc: 3
+
+# Classes
+names: ['Mask','NoMask','MaskIncorrect']
+
+
