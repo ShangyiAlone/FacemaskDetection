@@ -25,69 +25,236 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButto
 from PyQt5.QtCore import Qt
 
 
+# class LoginWindow(QWidget):
+#     def __init__(self):
+#         super().__init__()
+#         self.setWindowTitle("登录")
+#         self.setGeometry(300, 300, 770, 480)
+#         self.mainWindow = MainWindow()
+#         self.regiter =  RegisterWindow()
+#
+#         layout = QVBoxLayout()
+#
+#         # 创建水平布局用于放置用户名标签和输入框
+#         hbox_username = QHBoxLayout()
+#         self.label_username = QLabel("用户名:")
+#         self.edit_username = QLineEdit()
+#         hbox_username.addWidget(self.label_username)
+#         hbox_username.addWidget(self.edit_username)
+#
+#         # 创建水平布局用于放置密码标签和输入框
+#         hbox_password = QHBoxLayout()
+#         self.label_password = QLabel("密码:")
+#         self.edit_password = QLineEdit()
+#         self.edit_password.setEchoMode(QLineEdit.Password)
+#         hbox_password.addWidget(self.label_password)
+#         hbox_password.addWidget(self.edit_password)
+#
+#         layout.addLayout(hbox_username)  # 将用户名水平布局添加到垂直布局中
+#         layout.addLayout(hbox_password)  # 将密码水平布局添加到垂直布局中
+#
+#         # 创建水平布局用于放置登录按钮和注册按钮
+#         hbox_buttons = QHBoxLayout()
+#         self.button_login = QPushButton("登录")
+#         self.button_login.clicked.connect(self.login)
+#         hbox_buttons.addWidget(self.button_login)
+#
+#         self.button_register = QPushButton("注册")
+#         self.button_register.clicked.connect(self.register)
+#         hbox_buttons.addWidget(self.button_register)
+#
+#         layout.addLayout(hbox_buttons)  # 将按钮水平布局添加到垂直布局中
+#
+#         self.setLayout(layout)
+#
+#         # 添加 CSS 样式
+#         self.setStyleSheet("""
+#             QWidget {
+#                 background-color: #f0f0f0;
+#             }
+#             QLabel {
+#                 font-size: 16px;
+#                 color: #333333;
+#             }
+#             QLineEdit, QPushButton {
+#                 font-size: 14px;
+#                 color: #333333;
+#                 background-color: #ffffff;
+#                 border: 1px solid #cccccc;
+#                 border-radius: 4px;
+#                 padding: 6px 10px;
+#             }
+#             QPushButton:hover {
+#                 background-color: #e0e0e0;
+#             }
+#         """)
+#
+#     def login(self):
+#         username = self.edit_username.text()
+#         password = self.edit_password.text()
+#
+#         # 构造登录请求的数据
+#         data = {
+#             'username': username,
+#             'password': password
+#         }
+#
+#         # 发送登录请求
+#         response = requests.post('http://127.0.0.1:5000/login', json=data)
+#
+#         print(response)
+#
+#         # 解析响应
+#         if response.status_code == 200:
+#             self.close()  # 关闭登录窗口
+#             self.mainWindow.show()
+#
+#         else:
+#             QMessageBox.warning(self, "Login", "Failed to connect to server!")
+#
+#     def register(self):
+#         # 处理注册逻辑
+#         self.regiter.show()
+#
+#
+# class RegisterWindow(QWidget):
+#     def __init__(self):
+#         super().__init__()
+#         self.setWindowTitle("注册用户")
+#         self.setGeometry(300, 300, 770, 480)
+#
+#         layout = QVBoxLayout()
+#
+#         # 用户名
+#         hbox_username = QHBoxLayout()
+#         self.label_username = QLabel("用户名:")
+#         self.edit_username = QLineEdit()
+#         hbox_username.addWidget(self.label_username)
+#         hbox_username.addWidget(self.edit_username)
+#
+#         # 密码
+#         hbox_password = QHBoxLayout()
+#         self.label_password = QLabel("密码:")
+#         self.edit_password = QLineEdit()
+#         self.edit_password.setEchoMode(QLineEdit.Password)
+#         hbox_password.addWidget(self.label_password)
+#         hbox_password.addWidget(self.edit_password)
+#
+#         # 邮箱
+#         hbox_email = QHBoxLayout()
+#         self.label_email = QLabel("邮箱:")
+#         self.edit_email = QLineEdit()
+#         hbox_email.addWidget(self.label_email)
+#         hbox_email.addWidget(self.edit_email)
+#
+#         # 验证码
+#         hbox_verification = QHBoxLayout()
+#         self.label_verification = QLabel("验证码:")
+#         self.edit_verification = QLineEdit()
+#         hbox_verification.addWidget(self.label_verification)
+#         hbox_verification.addWidget(self.edit_verification)
+#
+#         layout.addLayout(hbox_username)
+#         layout.addLayout(hbox_password)
+#         layout.addLayout(hbox_email)
+#         layout.addLayout(hbox_verification)
+#
+#         # 发送验证码按钮
+#         self.button_send_verification = QPushButton("发送验证码")
+#         self.button_send_verification.clicked.connect(self.send_verification)
+#         layout.addWidget(self.button_send_verification)
+#
+#         # 注册按钮
+#         self.button_register = QPushButton("注册")
+#         self.button_register.clicked.connect(self.register)
+#         layout.addWidget(self.button_register)
+#
+#         self.setLayout(layout)
+#
+#     def send_verification(self):
+#         # 发送验证码逻辑
+#         email = self.edit_email.text()
+#         data = {
+#             'email': email
+#         }
+#         response = requests.post('http://127.0.0.1:5000/send_code', json=data)
+#         QMessageBox.information(self, "Register", "Send Email successful!")
+#
+#     def register(self):
+#         username = self.edit_username.text()
+#         password = self.edit_password.text()
+#         email = self.edit_email.text()
+#         verification_code = self.edit_verification.text()
+#         data = {
+#             'email': email,
+#             'username':username,
+#             'password':password,
+#             'code':verification_code
+#         }
+#         response = requests.post('http://127.0.0.1:5000/register', json=data)
+#         # 注册逻辑
+#         # 这里需要根据具体的注册逻辑进行处理，比如将用户信息保存到数据库中等
+#         # 这里只是一个简单的示例
+#
+#         if response['data'] == 1:
+#             QMessageBox.information(self, "Register", "Registration successful!")
+#         else:
+#             QMessageBox.warning(self, "Register", "Please fill in all fields!")
+
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QMessageBox, QSizePolicy
+from PyQt5.QtGui import QPixmap
+import requests
+
 class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Login")
+        self.setWindowTitle("登录")
         self.setGeometry(300, 300, 770, 480)
         self.mainWindow = MainWindow()
-        self.regiter =  RegisterWindow()
+        self.registerWindow = RegisterWindow()
 
         layout = QVBoxLayout()
 
         # 创建水平布局用于放置用户名标签和输入框
         hbox_username = QHBoxLayout()
-        self.label_username = QLabel("Username:")
+        self.label_username = QLabel("用户名:")
         self.edit_username = QLineEdit()
+        self.edit_username.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         hbox_username.addWidget(self.label_username)
         hbox_username.addWidget(self.edit_username)
+        hbox_username.setStretch(1, 1)  # 设置编辑框的比例
 
         # 创建水平布局用于放置密码标签和输入框
         hbox_password = QHBoxLayout()
-        self.label_password = QLabel("Password:")
+        self.label_password = QLabel("密码:")
         self.edit_password = QLineEdit()
         self.edit_password.setEchoMode(QLineEdit.Password)
+        self.edit_password.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         hbox_password.addWidget(self.label_password)
         hbox_password.addWidget(self.edit_password)
+        hbox_password.setStretch(1, 1)  # 设置编辑框的比例
 
         layout.addLayout(hbox_username)  # 将用户名水平布局添加到垂直布局中
         layout.addLayout(hbox_password)  # 将密码水平布局添加到垂直布局中
 
         # 创建水平布局用于放置登录按钮和注册按钮
         hbox_buttons = QHBoxLayout()
-        self.button_login = QPushButton("Login")
+        self.button_login = QPushButton("登录")
+        self.button_login.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.button_login.clicked.connect(self.login)
         hbox_buttons.addWidget(self.button_login)
 
-        self.button_register = QPushButton("Register")
+        self.button_register = QPushButton("注册")
+        self.button_register.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.button_register.clicked.connect(self.register)
         hbox_buttons.addWidget(self.button_register)
+        hbox_buttons.setStretch(0, 1)
+        hbox_buttons.setStretch(1, 1)
 
         layout.addLayout(hbox_buttons)  # 将按钮水平布局添加到垂直布局中
 
         self.setLayout(layout)
 
-        # 添加 CSS 样式
-        self.setStyleSheet("""
-            QWidget {
-                background-color: #f0f0f0;
-            }
-            QLabel {
-                font-size: 16px;
-                color: #333333;
-            }
-            QLineEdit, QPushButton {
-                font-size: 14px;
-                color: #333333;
-                background-color: #ffffff;
-                border: 1px solid #cccccc;
-                border-radius: 4px;
-                padding: 6px 10px;
-            }
-            QPushButton:hover {
-                background-color: #e0e0e0;
-            }
-        """)
 
     def login(self):
         username = self.edit_username.text()
@@ -108,51 +275,57 @@ class LoginWindow(QWidget):
         if response.status_code == 200:
             self.close()  # 关闭登录窗口
             self.mainWindow.show()
-
         else:
             QMessageBox.warning(self, "Login", "Failed to connect to server!")
 
     def register(self):
         # 处理注册逻辑
-        self.regiter.show()
-
+        self.registerWindow.show()
 
 class RegisterWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Register")
+        self.setWindowTitle("注册用户")
         self.setGeometry(300, 300, 770, 480)
 
         layout = QVBoxLayout()
 
         # 用户名
         hbox_username = QHBoxLayout()
-        self.label_username = QLabel("Username:")
+        self.label_username = QLabel("用户名:")
         self.edit_username = QLineEdit()
+        self.edit_username.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         hbox_username.addWidget(self.label_username)
         hbox_username.addWidget(self.edit_username)
+        hbox_username.setStretch(1, 1)  # 设置编辑框的比例
 
         # 密码
         hbox_password = QHBoxLayout()
-        self.label_password = QLabel("Password:")
+        self.label_password = QLabel("密码:")
         self.edit_password = QLineEdit()
         self.edit_password.setEchoMode(QLineEdit.Password)
+        self.edit_password.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         hbox_password.addWidget(self.label_password)
         hbox_password.addWidget(self.edit_password)
+        hbox_password.setStretch(1, 1)  # 设置编辑框的比例
 
         # 邮箱
         hbox_email = QHBoxLayout()
-        self.label_email = QLabel("Email:")
+        self.label_email = QLabel("邮箱:")
         self.edit_email = QLineEdit()
+        self.edit_email.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         hbox_email.addWidget(self.label_email)
         hbox_email.addWidget(self.edit_email)
+        hbox_email.setStretch(1, 1)  # 设置编辑框的比例
 
         # 验证码
         hbox_verification = QHBoxLayout()
-        self.label_verification = QLabel("Verification Code:")
+        self.label_verification = QLabel("验证码:")
         self.edit_verification = QLineEdit()
+        self.edit_verification.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         hbox_verification.addWidget(self.label_verification)
         hbox_verification.addWidget(self.edit_verification)
+        hbox_verification.setStretch(1, 1)  # 设置编辑框的比例
 
         layout.addLayout(hbox_username)
         layout.addLayout(hbox_password)
@@ -160,16 +333,19 @@ class RegisterWindow(QWidget):
         layout.addLayout(hbox_verification)
 
         # 发送验证码按钮
-        self.button_send_verification = QPushButton("Send Verification Code")
+        self.button_send_verification = QPushButton("发送验证码")
+        self.button_send_verification.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.button_send_verification.clicked.connect(self.send_verification)
         layout.addWidget(self.button_send_verification)
 
         # 注册按钮
-        self.button_register = QPushButton("Register")
+        self.button_register = QPushButton("注册")
+        self.button_register.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.button_register.clicked.connect(self.register)
         layout.addWidget(self.button_register)
 
         self.setLayout(layout)
+
 
     def send_verification(self):
         # 发送验证码逻辑
@@ -196,10 +372,12 @@ class RegisterWindow(QWidget):
         # 这里需要根据具体的注册逻辑进行处理，比如将用户信息保存到数据库中等
         # 这里只是一个简单的示例
 
-        if response['data'] == 1:
+        if response.json().get('data') == 1:
             QMessageBox.information(self, "Register", "Registration successful!")
         else:
             QMessageBox.warning(self, "Register", "Please fill in all fields!")
+
+
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
