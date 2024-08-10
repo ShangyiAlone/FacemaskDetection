@@ -369,6 +369,7 @@ class RegisterWindow(QWidget):
         }
         response = requests.post('http://127.0.0.1:5000/register', json=data)
 
+
         QMessageBox.information(self, "Register", "Registration successful!")
 
 
