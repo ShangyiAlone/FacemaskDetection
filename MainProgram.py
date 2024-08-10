@@ -362,7 +362,6 @@ class RegisterWindow(QWidget):
         email = self.edit_email.text()
         verification_code = self.edit_verification.text()
         data = {
-
             'email': email,
             'username':username,
             'password':password,
