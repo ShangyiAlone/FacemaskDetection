@@ -373,9 +373,6 @@ class RegisterWindow(QWidget):
         QMessageBox.information(self, "Register", "Registration successful!")
 
 
-
-
-
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(QMainWindow, self).__init__(parent)
