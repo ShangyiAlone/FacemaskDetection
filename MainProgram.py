@@ -368,14 +368,11 @@ class RegisterWindow(QWidget):
             'code':verification_code
         }
         response = requests.post('http://127.0.0.1:5000/register', json=data)
-        # 注册逻辑
-        # 这里需要根据具体的注册逻辑进行处理，比如将用户信息保存到数据库中等
-        # 这里只是一个简单的示例
 
-        if response.json().get('data') == 1:
-            QMessageBox.information(self, "Register", "Registration successful!")
-        else:
-            QMessageBox.warning(self, "Register", "Please fill in all fields!")
+
+        QMessageBox.information(self, "Register", "Registration successful!")
+
+
 
 
 

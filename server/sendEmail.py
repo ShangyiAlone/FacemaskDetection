@@ -15,7 +15,7 @@ def mail(email):
     code = random_numbers
     try:
         msg = MIMEText(random_numbers, 'plain', 'utf-8')  # 填写邮件内容
-        msg['From'] = formataddr(["晓宜工作室", my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
+        msg['From'] = formataddr(["徐靜茹", my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
         msg['To'] = formataddr(["test", my_user])  # 括号里的对应收件人邮箱昵称、收件人邮箱账号
         msg['Subject'] = "口罩识别系统验证码"  # 邮件的主题，也可以说是标题
 

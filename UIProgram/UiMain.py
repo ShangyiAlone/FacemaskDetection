@@ -472,7 +472,7 @@ class Ui_MainWindow(object):
         self.label_12.setGeometry(QtCore.QRect(1070, 60, 131, 21))
         font = QtGui.QFont()
         font.setFamily("华文楷体")
-        font.setPointSize(14)
+        font.setPointSize(10)
         font.setUnderline(True)
         self.label_12.setFont(font)
         self.label_12.setObjectName("label_12")
@@ -517,6 +517,7 @@ class Ui_MainWindow(object):
         self.SaveBtn.setText(_translate("MainWindow", "保存"))
         self.ExitBtn.setText(_translate("MainWindow", "退出"))
         self.label_3.setText(_translate("MainWindow", "基于深度学习的人脸佩戴口罩检测系统"))
-        # self.label_2.setText(_translate("MainWindow", "公众号：阿旭算法与机器学习"))
         self.label_12.setText(_translate("MainWindow", "数据导出"))
 import ui_sources_rc
+
+

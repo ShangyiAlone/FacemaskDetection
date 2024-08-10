@@ -17,7 +17,7 @@ class ExportWindow(QMainWindow):
         # 更新 DataFrame 列名
         self.df = pd.DataFrame(data, columns=['ID', '路径', '是否戴口罩', '置信度', '图片中的位置'])
 
-        self.setWindowTitle("Data Visualization and Export")
+        self.setWindowTitle("数据可视化")
         self.setGeometry(100, 100, 800, 600)
 
         layout = QVBoxLayout()
@@ -29,22 +29,22 @@ class ExportWindow(QMainWindow):
         layout.addWidget(self.table)
         self.load_data_to_table()
 
-        self.export_button = QPushButton("Export to Excel")
+        self.export_button = QPushButton("输出为Excel")
         self.export_button.clicked.connect(self.export_to_excel)
         layout.addWidget(self.export_button)
 
         # 水平布局用于平行放置按钮
         button_layout = QHBoxLayout()
 
-        self.bar_chart_button = QPushButton("Bar Chart")
+        self.bar_chart_button = QPushButton("柱状图")
         self.bar_chart_button.clicked.connect(self.show_bar_chart)
         button_layout.addWidget(self.bar_chart_button)
 
-        self.line_chart_button = QPushButton("Line Chart")
+        self.line_chart_button = QPushButton("折线图")
         self.line_chart_button.clicked.connect(self.show_line_chart)
         button_layout.addWidget(self.line_chart_button)
 
-        self.pie_chart_button = QPushButton("Pie Chart")
+        self.pie_chart_button = QPushButton("饼图")
         self.pie_chart_button.clicked.connect(self.show_pie_chart)
         button_layout.addWidget(self.pie_chart_button)
 
@@ -84,7 +84,7 @@ class VisualizeWindow(QMainWindow):
         super().__init__()
         self.df = df
         self.chart_type = chart_type
-        self.setWindowTitle("Data Visualization")
+        self.setWindowTitle("数据可视化")
         self.setGeometry(150, 150, 800, 600)
 
         layout = QVBoxLayout()
