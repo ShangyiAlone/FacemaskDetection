@@ -367,6 +367,7 @@ class RegisterWindow(QWidget):
             'password':password,
             'code':verification_code
         }
+
         response = requests.post('http://127.0.0.1:5000/register', json=data)
 
 
