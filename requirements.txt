@@ -25,7 +25,7 @@ torch==2.7.1
 tqdm==4.66.1
 typing-extensions==4.8.0
 ultralytics==8.0.199
-urllib3==2.6.0
+urllib3==2.6.3
 zipp==3.17.0
 PyQt5==5.15.2
 pyqt5-tools==5.15.2.3.1
